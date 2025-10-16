@@ -2,7 +2,6 @@ package br.com.alura.screenmatch.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 //alias - é como um apelido, serve para procurar pelo nome "Title" que está na api, mas o nome
 // vai pelo o que está na váriavel que definimos
