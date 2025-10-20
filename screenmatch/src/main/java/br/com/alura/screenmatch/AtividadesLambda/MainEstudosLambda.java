@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.AtividadesLambda;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MainEstudosLambda {
@@ -60,6 +61,20 @@ public class MainEstudosLambda {
         });
 
         // Map / Filter
+
+        ///////////////////////////////////////////////////////////
+        System.out.println("-----------------------------------");
+
+        List<String> nomesStrem = Arrays.asList("Ingrid", "Leona", "Willian", "Lindinha", "Gordo");
+
+        nomesStrem.stream()
+                .sorted()// sorted - deixa na ordem alfabetica
+                .limit(3)// define os 3 primeiros itens
+                .filter(n -> n.startsWith("I"))// um filtro onde pega só itens que iniciam com I
+                .map(n -> n.toUpperCase())// map - transformação // pega o item e deixa maiusculo
+                .forEach(System.out::println);
+        ;
+
 
 
 

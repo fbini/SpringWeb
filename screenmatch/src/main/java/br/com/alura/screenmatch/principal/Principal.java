@@ -41,6 +41,8 @@ public class Principal {
 
         // expressoes em lambda e a API de Streams/Collections java 8+
         temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
+        //Episodio((parametro) -> expressao)
+
 
 
 
