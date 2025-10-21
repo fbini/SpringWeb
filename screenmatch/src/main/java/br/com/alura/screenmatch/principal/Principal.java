@@ -1,19 +1,24 @@
 package br.com.alura.screenmatch.principal;
 
+import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Principal {
 
     private Scanner teclado = new Scanner(System.in);
-    private ConsumoApi consumo = new ConsumoApi();
-    private ConverteDados conversor = new ConverteDados();
+
+    private final ConsumoApi consumo = new ConsumoApi();
+    private final ConverteDados conversor = new ConverteDados();
+
     //variaveis constantes = uma const - não muda nunca
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=9025175";
@@ -42,6 +47,19 @@ public class Principal {
         // expressoes em lambda e a API de Streams/Collections java 8+
         temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
         //Episodio((parametro) -> expressao)
+
+        List<DadosEpisodio> dadosEpisodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream())
+                .collect(Collectors.toList());// Possibilita colocar dados gerados em outra lista
+        // Sendo assim para poder modificar a lista utilizar o collect
+                //.toList -- ele gera uma lista imutável
+
+        System.out.println("\n Top 5 episódios");
+        dadosEpisodios.stream()
+                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
+                .limit(5)
+                .forEach(System.out::println);
 
 
 

@@ -73,7 +73,7 @@ public class MainEstudosLambda {
                 .filter(n -> n.startsWith("I"))// um filtro onde pega só itens que iniciam com I
                 .map(n -> n.toUpperCase())// map - transformação // pega o item e deixa maiusculo
                 .forEach(System.out::println);
-        ;
+
 
 
 
